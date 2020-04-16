@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     messageJsonObject = new JSONObject(message);
-                    String key =        "topic";
+                    String key = "topic";
 
                     if (mapOfCompanies.containsKey(messageJsonObject.getString(key))) {
                         final CompanyDetails company = mapOfCompanies.get(messageJsonObject.getString(key));
