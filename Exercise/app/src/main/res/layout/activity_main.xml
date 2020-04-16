@@ -10,13 +10,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/marketwatch"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="273dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
+        android:background="#ffffff" />
 
 </LinearLayout>
 
