@@ -1,5 +1,6 @@
 package com.example.exercise;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,11 @@ import java.util.List;
 public class CompanyDetailsAdapter extends RecyclerView.Adapter<CompanyDetailsAdapter.MyViewHolder> {
 
 
-    List <CompanyDetails> companyDetailsList ;
+    private Context context;
+    private List <CompanyDetails> companyDetailsList ;
 
-    public CompanyDetailsAdapter(List <CompanyDetails> companyDetailsList) {
+    public CompanyDetailsAdapter(Context context,List <CompanyDetails> companyDetailsList) {
+        this.context = context;
         this.companyDetailsList = companyDetailsList;
     }
 
@@ -27,10 +30,10 @@ public class CompanyDetailsAdapter extends RecyclerView.Adapter<CompanyDetailsAd
     public void onBindViewHolder( MyViewHolder holder, int position) {
         CompanyDetails companyDetails = companyDetailsList.get(position);
         holder.companyName.setText(companyDetails.getCompanyName());
-        holder.askPrice.setText(companyDetails.getAskPrice());
-        holder.bidPrice.setText(companyDetails.getBidPrice());
-        holder.lastPrice.setText(companyDetails.getLastPrice());
-        holder.highPrice.setText(companyDetails.getHighPrice());
+        holder.askPrice.setText(companyDetails.getAskPrice()+"");
+        holder.bidPrice.setText(companyDetails.getBidPrice()+"");
+        holder.lastPrice.setText(companyDetails.getLastPrice()+"");
+        holder.highPrice.setText(companyDetails.getHighPrice()+"");
     }
 
     @Override

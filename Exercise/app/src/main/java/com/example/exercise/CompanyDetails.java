@@ -1,78 +1,44 @@
 package com.example.exercise;
 
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-
-public class CompanyDetails  {
+public class CompanyDetails {
     JSONObject copmanyDetails;
-    String     companyName;
-    String     askPrice;
-    String     lastPrice;
-    String     bidPrice;
-    String     highPrice;
-
-     public CompanyDetails(){
-
-     }
+    String companyName;
+    double askPrice;
+    double lastPrice;
+    double bidPrice;
+    double highPrice;
 
     public String getCompanyName() {
         return companyName;
     }
 
-    public String getAskPrice() {
+    public double getAskPrice() {
         return askPrice;
     }
 
-    public String getLastPrice() {
+    public double getLastPrice() {
         return lastPrice;
     }
 
-    public String getBidPrice() {
+    public double getBidPrice() {
         return bidPrice;
     }
 
-    public String getHighPrice() {
+    public double getHighPrice() {
         return highPrice;
     }
 
     public CompanyDetails(JSONObject copmanyDetails) throws JSONException {
         this.copmanyDetails = copmanyDetails;
-        companyName =         copmanyDetails.get("name").toString();
-        askPrice =            copmanyDetails.get("ask-price").toString();
-        lastPrice =           copmanyDetails.get("last-price").toString();
-        bidPrice =            copmanyDetails.get("bid-price").toString();
-        highPrice =           copmanyDetails.get("high-price").toString();
+        companyName = copmanyDetails.get("name").toString();
+        askPrice  = Double.parseDouble( copmanyDetails.get("ask-price").toString());
+        lastPrice = Double.parseDouble( copmanyDetails.get("last-price").toString());
+        bidPrice  = Double.parseDouble(copmanyDetails.get("bid-price").toString());
+        highPrice = Double.parseDouble(copmanyDetails.get("high-price").toString());
 
-    }
-
-    public JSONObject updateCompany(JSONObject copmanyDetails) throws Exception {
-        Iterator keys = copmanyDetails.keys();
-        while (keys.hasNext()) {
-            String key = (String) keys.next();
-            switch (key) {
-                case "name":
-                    this.companyName = copmanyDetails.getString("date");
-                    break;
-                case "ask-price":
-                    this.askPrice = copmanyDetails.getString("askprice");
-                    break;
-                case "last-price":
-                    this.lastPrice = copmanyDetails.getString("gclose");
-                    break;
-                case "bid-price":
-                    this.bidPrice = copmanyDetails.getString("gclose");
-                    break;
-                case "high-price":
-                    this.highPrice = copmanyDetails.getString("gclose");
-                    break;
-            }
-        }
-        return  copmanyDetails;
     }
 
     @Override
