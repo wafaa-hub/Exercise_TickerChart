@@ -12,6 +12,7 @@ public class MyCustomApplication extends Application {
         super.onCreate();
 
          mySingletonVolley = new MySingletonVolley(getApplicationContext());
+         MySingletonVolley.getInstance(getApplicationContext());
     }
 
     @Override
