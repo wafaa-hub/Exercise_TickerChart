@@ -5,7 +5,7 @@ import android.content.res.Configuration;
 
 public class MyCustomApplication extends Application {
 
-    public  static  MySingletonVolley mySingletonVolley;
+    private static  MySingletonVolley mySingletonVolley;
 
     @Override
     public void onCreate() {
