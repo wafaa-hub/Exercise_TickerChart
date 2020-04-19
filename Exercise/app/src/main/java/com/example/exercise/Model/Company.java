@@ -1,4 +1,4 @@
-package com.example.exercise;
+package com.example.exercise.Model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
