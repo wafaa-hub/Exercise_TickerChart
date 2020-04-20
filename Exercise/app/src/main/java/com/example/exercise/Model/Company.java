@@ -3,8 +3,8 @@ package com.example.exercise.Model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CompanyDetails {
-    JSONObject copmanyDetails;
+public class Company {
+    JSONObject copmany;
     String companyName;
     double askPrice;
     double lastPrice;
@@ -31,20 +31,20 @@ public class CompanyDetails {
         return highPrice;
     }
 
-    public CompanyDetails(JSONObject copmanyDetails) throws JSONException {
-        this.copmanyDetails = copmanyDetails;
-        companyName = copmanyDetails.get("name").toString();
-        askPrice  = Double.parseDouble( copmanyDetails.get("ask-price").toString());
-        lastPrice = Double.parseDouble( copmanyDetails.get("last-price").toString());
-        bidPrice  = Double.parseDouble(copmanyDetails.get("bid-price").toString());
-        highPrice = Double.parseDouble(copmanyDetails.get("high-price").toString());
+    public Company(JSONObject copmany) throws JSONException {
+        this.copmany = copmany;
+        companyName = copmany.get("name").toString();
+        askPrice = Double.parseDouble(copmany.get("ask-price").toString());
+        lastPrice = Double.parseDouble(copmany.get("last-price").toString());
+        bidPrice = Double.parseDouble(copmany.get("bid-price").toString());
+        highPrice = Double.parseDouble(copmany.get("high-price").toString());
 
     }
 
     @Override
     public String toString() {
         return "CompanyDetails{" +
-                "copmanyDetails=" + copmanyDetails +
+                "copmanyDetails=" + copmany +
                 ", companyName='" + companyName + '\'' +
                 ", askPrice='" + askPrice + '\'' +
                 ", lastPrice='" + lastPrice + '\'' +
