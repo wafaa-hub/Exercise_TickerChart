@@ -28,13 +28,12 @@
 
         <TextView
             android:id="@+id/companyName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:gravity="center"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:gravity="center|left"
+            android:padding="7dp"
             android:text="@string/companyName"
             android:textStyle="bold"
             android:textSize="15sp"
@@ -42,13 +41,12 @@
 
         <TextView
             android:id="@+id/askprice"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
             android:layout_weight="1"
-            android:gravity="center"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:gravity="center|right"
+            android:padding="7dp"
             android:text="@string/ask_price"
             android:textColor="#B2B0AF"
             android:textStyle="bold"
@@ -56,13 +54,12 @@
 
         <TextView
             android:id="@+id/lastprice"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:gravity="center"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:gravity="center|right"
+            android:padding="7dp"
             android:text="@string/last_price"
             android:textColor="#B2B0AF"
             android:textStyle="bold"
@@ -70,13 +67,12 @@
 
         <TextView
             android:id="@+id/bidprice"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:gravity="center"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:gravity="center|right"
+            android:padding="7dp"
             android:text="@string/bid_price"
             android:textColor="#B2B0AF"
             android:textStyle="bold"
@@ -84,13 +80,12 @@
 
         <TextView
             android:id="@+id/highprice"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:gravity="center"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:gravity="center|right"
+            android:padding="7dp"
             android:text="@string/high_price"
             android:textColor="#B2B0AF"
             android:textStyle="bold"
@@ -101,7 +96,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/marketwatch"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_weight="1"
         android:background="#ffffff" />
 
