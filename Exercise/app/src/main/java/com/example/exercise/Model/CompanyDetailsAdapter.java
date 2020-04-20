@@ -1,4 +1,4 @@
-package com.example.exercise;
+package com.example.exercise.Model;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,17 +7,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.exercise.R;
+
 import java.util.List;
 
 public class CompanyDetailsAdapter extends RecyclerView.Adapter<CompanyDetailsAdapter.MyViewHolder> {
 
 
     private Context context;
-    private List <CompanyDetails> companyDetailsList ;
+    private List <Company> companyList;
 
-    public CompanyDetailsAdapter(Context context,List <CompanyDetails> companyDetailsList) {
+    public CompanyDetailsAdapter(Context context,List <Company> companyList) {
         this.context = context;
-        this.companyDetailsList = companyDetailsList;
+        this.companyList = companyList;
     }
 
     @Override
@@ -28,17 +30,17 @@ public class CompanyDetailsAdapter extends RecyclerView.Adapter<CompanyDetailsAd
 
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
-        CompanyDetails companyDetails = companyDetailsList.get(position);
-        holder.companyName.setText(companyDetails.getCompanyName());
-        holder.askPrice.setText(companyDetails.getAskPrice()+"");
-        holder.bidPrice.setText(companyDetails.getBidPrice()+"");
-        holder.lastPrice.setText(companyDetails.getLastPrice()+"");
-        holder.highPrice.setText(companyDetails.getHighPrice()+"");
+        Company company = companyList.get(position);
+        holder.companyName.setText(company.getCompanyName());
+        holder.askPrice.setText(company.getAskPrice()+"");
+        holder.bidPrice.setText(company.getBidPrice()+"");
+        holder.lastPrice.setText(company.getLastPrice()+"");
+        holder.highPrice.setText(company.getHighPrice()+"");
     }
 
     @Override
     public int getItemCount() {
-        return companyDetailsList.size();
+        return companyList.size();
     }
 
 

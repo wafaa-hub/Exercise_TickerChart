@@ -1,11 +1,11 @@
-package com.example.exercise;
+package com.example.exercise.Controller;
 
 import android.app.Application;
 import android.content.res.Configuration;
 
 public class MyCustomApplication extends Application {
 
-    private static  MySingletonVolley mySingletonVolley;
+    private static MySingletonVolley mySingletonVolley;
 
     @Override
     public void onCreate() {
