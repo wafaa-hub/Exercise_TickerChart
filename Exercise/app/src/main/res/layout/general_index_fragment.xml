@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="170dp"
     android:background="@drawable/rounded_white_corners">
 
     <TextView
@@ -22,22 +22,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <TextView
         android:id="@+id/amount"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="12dp"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="@string/amount_general"
         android:textColor="#B2B0AF"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/generalIndex" />
 
@@ -45,13 +43,12 @@
         android:id="@+id/amount_general"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:padding="10dp"
+        android:layout_marginTop="4dp"
         android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/volumeText"
-        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toEndOf="@+id/amount"
         app:layout_constraintTop_toBottomOf="@+id/generalIndex" />
 
@@ -59,7 +56,6 @@
         android:id="@+id/tradesCountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:padding="10dp"
@@ -68,7 +64,7 @@
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/tradesCount"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.929"
         app:layout_constraintStart_toEndOf="@+id/generalIndex"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,9 +72,8 @@
         android:id="@+id/tradesCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:padding="10dp"
         android:textColor="#000000"
         android:textSize="15sp"
@@ -149,7 +144,7 @@
             android:layout_marginLeft="232dp"
             android:padding="10dp"
             android:textColor="#000000"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fixed" />
@@ -160,7 +155,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="#ff0000"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -191,7 +186,7 @@
             android:layout_marginRight="56dp"
             android:padding="10dp"
             android:textColor="#00ff00"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/numOfFixing"
             app:layout_constraintTop_toBottomOf="@+id/winning" />
@@ -202,9 +197,8 @@
         android:id="@+id/volumeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginLeft="164dp"
-        android:padding="10dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
         android:text="@string/volume_general"
         android:textColor="#B2B0AF"
         android:textSize="15sp"
@@ -216,10 +210,8 @@
         android:id="@+id/volume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:padding="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="bold"
