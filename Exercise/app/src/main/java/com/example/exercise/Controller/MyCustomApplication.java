@@ -5,13 +5,10 @@ import android.content.res.Configuration;
 
 public class MyCustomApplication extends Application {
 
-    private static MySingletonVolley mySingletonVolley;
-
     @Override
     public void onCreate() {
         super.onCreate();
 
-         mySingletonVolley = new MySingletonVolley(getApplicationContext());
          MySingletonVolley.getInstance(getApplicationContext());
     }
 

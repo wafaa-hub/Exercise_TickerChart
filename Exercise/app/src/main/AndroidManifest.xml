@@ -14,11 +14,6 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
-        <service
-            android:name=".Controller.VolleyService"
-            android:enabled="true"
-            android:exported="false"></service>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
