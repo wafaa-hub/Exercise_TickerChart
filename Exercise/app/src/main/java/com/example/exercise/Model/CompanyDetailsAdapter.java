@@ -11,6 +11,9 @@ import com.example.exercise.R;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CompanyDetailsAdapter extends RecyclerView.Adapter<CompanyDetailsAdapter.MyViewHolder> {
 
 
@@ -46,20 +49,15 @@ public class CompanyDetailsAdapter extends RecyclerView.Adapter<CompanyDetailsAd
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView  companyName;
-        TextView  askPrice;
-        TextView  lastPrice;
-        TextView  bidPrice;
-        TextView  highPrice;
+        @BindView(R.id.name)      TextView  companyName;
+        @BindView(R.id.askprice)  TextView  askPrice;
+        @BindView(R.id.lastprice) TextView  lastPrice;
+        @BindView(R.id.bidprice)  TextView  bidPrice;
+        @BindView(R.id.highprice) TextView  highPrice;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
-              companyName = itemView.findViewById(R.id.name);
-              askPrice    = itemView.findViewById(R.id.askprice);
-              lastPrice   = itemView.findViewById(R.id.lastprice);
-              bidPrice    = itemView.findViewById(R.id.bidprice);
-              highPrice   = itemView.findViewById(R.id.highprice);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
