@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+
 
 import com.android.volley.toolbox.JsonArrayRequest;
 
+import com.example.exercise.Controller.MyCustomEvent;
 import com.example.exercise.Controller.MySingletonVolley;
 import com.example.exercise.Model.Company;
 import com.example.exercise.Model.CompanyDetailsAdapter;
@@ -21,7 +21,9 @@ import com.example.exercise.Model.CompanyDetailsAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import org.json.JSONArray;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         marketWatchRecycler.setLayoutManager(layoutManager);
         marketWatchRecycler.setItemAnimator(new DefaultItemAnimator());
@@ -47,7 +48,22 @@ public class MainActivity extends AppCompatActivity {
         marketWatchRecycler.setAdapter(companyDetailsAdapter);
         marketWatchJsonParse();
         companyDetailsAdapter.notifyDataSetChanged();
+
     }
+
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+    public void onStop(){
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void customEventReceived(MyCustomEvent event){
+        EventBus.getDefault().post(new MyCustomEvent("Main Activity"));
+    }
+
 
     public void marketWatchJsonParse() {
 

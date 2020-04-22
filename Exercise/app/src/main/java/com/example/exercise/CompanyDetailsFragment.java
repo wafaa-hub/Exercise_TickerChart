@@ -16,9 +16,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.exercise.Controller.MyCustomEvent;
 import com.example.exercise.Controller.MySingletonVolley;
 import com.example.exercise.Model.CompanyDetails;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,6 +51,20 @@ public class CompanyDetailsFragment extends Fragment {
          unbinder = ButterKnife.bind(this, view);
         companyDetailsJsonParse();
         return view;
+    }
+
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+    public void onStop(){
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void customEventReceived(MyCustomEvent event){
+        EventBus.getDefault().post(new MyCustomEvent("Company Details Fragement"));
     }
 
     public void companyDetailsJsonParse() {

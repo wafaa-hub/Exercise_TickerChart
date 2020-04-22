@@ -12,24 +12,17 @@ import butterknife.Unbinder;
 
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.Cache;
-import com.android.volley.Network;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.exercise.Controller.MyCustomEvent;
 import com.example.exercise.Controller.MySingletonVolley;
-import com.example.exercise.Model.Company;
 import com.example.exercise.Model.GeneralIndex;
 
-import org.json.JSONArray;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,6 +48,23 @@ public class GeneralIndexFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         generalIndexJsonParse();
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void customEventReceived(MyCustomEvent event){
+        EventBus.getDefault().post(new MyCustomEvent("General Index Fragement"));
     }
 
     public void generalIndexJsonParse() {
