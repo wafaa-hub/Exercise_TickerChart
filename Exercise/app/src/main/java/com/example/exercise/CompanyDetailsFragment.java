@@ -43,6 +43,7 @@ public class CompanyDetailsFragment extends Fragment {
     @BindView(R.id.volume)
     TextView volumeCompanyDetails;
     private Unbinder unbinder;
+    private MyCustomEvent myCustomEvent;
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
@@ -64,7 +65,21 @@ public class CompanyDetailsFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void customEventReceived(MyCustomEvent event){
-        EventBus.getDefault().post(new MyCustomEvent("Company Details Fragement"));
+
+        try {
+            JSONObject jsonObject = new JSONObject(event.getFragmentsData());
+            CompanyDetails companyDetails = new CompanyDetails(jsonObject);
+            companyName.setText(companyDetails.getCompany_name());
+            sybmol.setText(companyDetails.getSymbol());
+            amountCompanyDetails.setText(companyDetails.getAmount());
+            volumeCompanyDetails.setText(companyDetails.getVolume());
+            highPriceCompany.setText(companyDetails.getHigh());
+            lowPriceCompany.setText(companyDetails.getLow());
+            tradesDetails.setText(companyDetails.getTrades_count());
+
+        } catch (JSONException e) {
+            throw  new RuntimeException(e);
+        }
     }
 
     public void companyDetailsJsonParse() {
@@ -74,24 +89,8 @@ public class CompanyDetailsFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                        System.out.println(response);
-
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            CompanyDetails companyDetails = new CompanyDetails(jsonObject);
-                            companyName.setText(companyDetails.getCompany_name());
-                            sybmol.setText(companyDetails.getSymbol());
-                            amountCompanyDetails.setText(companyDetails.getAmount());
-                            volumeCompanyDetails.setText(companyDetails.getVolume());
-                            highPriceCompany.setText(companyDetails.getHigh());
-                            lowPriceCompany.setText(companyDetails.getLow());
-                            tradesDetails.setText(companyDetails.getTrades_count());
-
-                        } catch (JSONException e) {
-                            throw  new RuntimeException(e);
-                        }
-
+                        myCustomEvent = new MyCustomEvent(response);
+                        EventBus.getDefault().post(myCustomEvent);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -99,7 +98,6 @@ public class CompanyDetailsFragment extends Fragment {
 
             }
         });
-
 
         MySingletonVolley.getInstance(getContext()).addToRequestQue(request);
 

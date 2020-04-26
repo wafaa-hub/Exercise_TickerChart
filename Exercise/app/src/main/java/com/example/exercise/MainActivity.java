@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.marketwatch) RecyclerView marketWatchRecycler;
     private ArrayList<Company> companies = new ArrayList<>();
     private CompanyDetailsAdapter companyDetailsAdapter;
+    private MyCustomEvent myCustomEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
         marketWatchRecycler.setItemAnimator(new DefaultItemAnimator());
         marketWatchRecycler.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         companyDetailsAdapter = new CompanyDetailsAdapter(MainActivity.this,companies);
-        marketWatchRecycler.setAdapter(companyDetailsAdapter);
         marketWatchJsonParse();
-        companyDetailsAdapter.notifyDataSetChanged();
 
     }
 
@@ -59,40 +59,40 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void customEventReceived(MyCustomEvent event){
-        EventBus.getDefault().post(new MyCustomEvent("Main Activity"));
-    }
-
 
     public void marketWatchJsonParse() {
 
         String url = "http://tickerchart.com/interview/marketwatch.json";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
-
-                    System.out.print(response);
-
-                    for(int i =0 ; i<  response.length() ; i++)
-                    {
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject = response.getJSONObject(i);
-                            Company company = new Company(jsonObject);
-                            companies.add(company);
-                            companyDetailsAdapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            throw  new RuntimeException(e);
-                        }
-                    }
-
+                    myCustomEvent = new MyCustomEvent(response);
+                    EventBus.getDefault().post(myCustomEvent);
                 }, error -> {
                     throw  new RuntimeException(error);
 
                 });
 
         MySingletonVolley.getInstance(getApplicationContext()).addToRequestQue(request);
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEventMainThread(MyCustomEvent event){
+       JSONArray marketWatchData = event.getMarketWatchData();
+
+        for(int i = 0 ; i<  marketWatchData.length() ; i++)
+        {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = marketWatchData.getJSONObject(i);
+                Company company = new Company(jsonObject);
+                companies.add(company);
+                companyDetailsAdapter.notifyDataSetChanged();
+            } catch (JSONException e) {
+                throw  new RuntimeException(e);
+            }}
+        marketWatchRecycler.setAdapter(companyDetailsAdapter);
+        companyDetailsAdapter.notifyDataSetChanged();
 
     }
 }
