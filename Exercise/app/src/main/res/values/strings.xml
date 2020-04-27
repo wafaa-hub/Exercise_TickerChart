@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Exercise</string>
+    <string name="app_name">Ticker Chart</string>
     <string name="companyName">name</string>
     <string name="ask_price">ask price</string>
     <string name="last_price">last price</string>
@@ -16,4 +16,10 @@
     <string name="trades_count">trades count</string>
     <string name="amount_details">amount</string>
     <string name="volume_details">volume</string>
+    <string name="theme">Switch to light theme</string>
+    <string name="language">Switch to Arabic Language</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
+    <string name="application_settings">Application Settings</string>
+    <string name="general_settings_label">General Settings</string>
 </resources>

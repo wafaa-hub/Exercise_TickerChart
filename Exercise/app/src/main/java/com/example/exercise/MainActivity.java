@@ -1,8 +1,14 @@
 package com.example.exercise;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,8 +21,12 @@ import com.android.volley.toolbox.JsonArrayRequest;
 
 import com.example.exercise.Controller.MyCustomEvent;
 import com.example.exercise.Controller.MySingletonVolley;
+import com.example.exercise.Model.ApplicationSettings;
 import com.example.exercise.Model.Company;
 import com.example.exercise.Model.CompanyDetailsAdapter;
+import com.google.android.material.internal.NavigationMenu;
+import com.google.android.material.internal.NavigationMenuView;
+import com.google.android.material.navigation.NavigationView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,12 +40,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.marketwatch) RecyclerView marketWatchRecycler;
+    @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
     private ArrayList<Company> companies = new ArrayList<>();
     private CompanyDetailsAdapter companyDetailsAdapter;
-    private MyCustomEvent myCustomEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +59,19 @@ public class MainActivity extends AppCompatActivity {
         marketWatchRecycler.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         companyDetailsAdapter = new CompanyDetailsAdapter(MainActivity.this,companies);
         marketWatchJsonParse();
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close_nav);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)){
+            return  true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void onStart() {
@@ -65,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
         String url = "http://tickerchart.com/interview/marketwatch.json";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
-                    myCustomEvent = new MyCustomEvent(response);
-                    EventBus.getDefault().post(myCustomEvent);
+                    EventBus.getDefault().post(new MyCustomEvent(response));
                 }, error -> {
                     throw  new RuntimeException(error);
 
@@ -94,5 +116,15 @@ public class MainActivity extends AppCompatActivity {
         marketWatchRecycler.setAdapter(companyDetailsAdapter);
         companyDetailsAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+          int id = menuItem.getItemId();
+        if (id == R.id.settings){
+           Intent intent = new Intent(MainActivity.this, ApplicationSettings.class);
+            startActivity(intent);
+        }
+        return false;
     }
 }
