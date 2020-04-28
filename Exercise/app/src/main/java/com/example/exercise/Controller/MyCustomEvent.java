@@ -1,26 +1,39 @@
 package com.example.exercise.Controller;
 
 
-import org.json.JSONArray;
+import com.example.exercise.Model.Company;
+import com.example.exercise.Model.CompanyDetails;
+import com.example.exercise.Model.GeneralIndex;
+
 
 public class MyCustomEvent {
 
-    private  String fragmentsData;
-    private  JSONArray MarketWatchData;
 
-    public String getFragmentsData() {
-        return fragmentsData;
+    private CompanyDetails companyDetailsData;
+    private GeneralIndex generalIndexData;
+    private Company MarketWatchData;
+
+    public GeneralIndex getGeneralIndexData() {
+        return generalIndexData;
     }
 
-    public JSONArray getMarketWatchData() {
+    public CompanyDetails getCompanyDetailsData() {
+        return companyDetailsData;
+    }
+
+    public Company getMarketWatchData() {
         return MarketWatchData;
     }
-    
-    public MyCustomEvent(String fragmentsData) {
-        this.fragmentsData = fragmentsData;
+
+    public MyCustomEvent(CompanyDetails companyDetailsData) {
+        this.companyDetailsData = companyDetailsData;
     }
 
-    public MyCustomEvent(JSONArray MarketWatchData) {
+    public MyCustomEvent(GeneralIndex generalIndexData) {
+        this.generalIndexData = generalIndexData;
+    }
+
+    public MyCustomEvent(Company MarketWatchData) {
         this.MarketWatchData = MarketWatchData;
     }
 }

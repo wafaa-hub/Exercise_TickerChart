@@ -23,6 +23,7 @@ import com.example.exercise.Model.CompanyDetails;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,7 +44,6 @@ public class CompanyDetailsFragment extends Fragment {
     @BindView(R.id.volume)
     TextView volumeCompanyDetails;
     private Unbinder unbinder;
-    private MyCustomEvent myCustomEvent;
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
@@ -65,10 +65,8 @@ public class CompanyDetailsFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void customEventReceived(MyCustomEvent event){
+           CompanyDetails companyDetails = event.getCompanyDetailsData();
 
-        try {
-            JSONObject jsonObject = new JSONObject(event.getFragmentsData());
-            CompanyDetails companyDetails = new CompanyDetails(jsonObject);
             companyName.setText(companyDetails.getCompany_name());
             sybmol.setText(companyDetails.getSymbol());
             amountCompanyDetails.setText(companyDetails.getAmount());
@@ -76,10 +74,6 @@ public class CompanyDetailsFragment extends Fragment {
             highPriceCompany.setText(companyDetails.getHigh());
             lowPriceCompany.setText(companyDetails.getLow());
             tradesDetails.setText(companyDetails.getTrades_count());
-
-        } catch (JSONException e) {
-            throw  new RuntimeException(e);
-        }
     }
 
     public void companyDetailsJsonParse() {
@@ -89,8 +83,14 @@ public class CompanyDetailsFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        myCustomEvent = new MyCustomEvent(response);
-                        EventBus.getDefault().post(myCustomEvent);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            CompanyDetails companyDetails = new CompanyDetails(jsonObject);
+                            EventBus.getDefault().post(new MyCustomEvent(companyDetails));
+
+                        } catch (JSONException e) {
+                            throw  new RuntimeException(e);
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -3,9 +3,7 @@ package com.example.exercise;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -24,8 +22,6 @@ import com.example.exercise.Controller.MySingletonVolley;
 import com.example.exercise.Model.ApplicationSettings;
 import com.example.exercise.Model.Company;
 import com.example.exercise.Model.CompanyDetailsAdapter;
-import com.google.android.material.internal.NavigationMenu;
-import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 
 import butterknife.BindView;
@@ -47,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private ArrayList<Company> companies = new ArrayList<>();
     private CompanyDetailsAdapter companyDetailsAdapter;
+    private JSONArray responseArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -88,7 +87,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String url = "http://tickerchart.com/interview/marketwatch.json";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
-                    EventBus.getDefault().post(new MyCustomEvent(response));
+                    responseArray = response;
+                    Company company = null;
+                    JSONObject jsonObject = null;
+
+                    for(int i = 0 ; i<  response.length() ; i++)
+                    {
+                        try {
+                            jsonObject = response.getJSONObject(i);
+                             company = new Company(jsonObject);
+                        } catch (JSONException e) {
+                            throw  new RuntimeException(e);
+                        }}
+                    EventBus.getDefault().post(new MyCustomEvent(company));
                 }, error -> {
                     throw  new RuntimeException(error);
 
@@ -100,19 +111,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEventMainThread(MyCustomEvent event){
-       JSONArray marketWatchData = event.getMarketWatchData();
+        Company marketWatchData = event.getMarketWatchData();
 
-        for(int i = 0 ; i<  marketWatchData.length() ; i++)
-        {
-            JSONObject jsonObject = null;
-            try {
-                jsonObject = marketWatchData.getJSONObject(i);
-                Company company = new Company(jsonObject);
-                companies.add(company);
-                companyDetailsAdapter.notifyDataSetChanged();
-            } catch (JSONException e) {
-                throw  new RuntimeException(e);
-            }}
+        for(int i = 0 ; i< responseArray.length() ; i++) {
+            companies.add(marketWatchData);
+            companyDetailsAdapter.notifyDataSetChanged();
+        }
         marketWatchRecycler.setAdapter(companyDetailsAdapter);
         companyDetailsAdapter.notifyDataSetChanged();
 
@@ -120,11 +124,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
-          int id = menuItem.getItemId();
+        int id = menuItem.getItemId();
         if (id == R.id.settings){
            Intent intent = new Intent(MainActivity.this, ApplicationSettings.class);
             startActivity(intent);
         }
         return false;
     }
+
+
 }
