@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تكرشارت</string>
+    <string name="companyName">الشركة</string>
+    <string name="ask_price">الطلب</string>
+    <string name="last_price">السعر</string>
+    <string name="high_price">أعلى</string>
+    <string name="bid_price">العرض</string>
+    <string name="general_index">المؤشر العام</string>
+    <string name="amount_general">الحجم</string>
+    <string name="trades">صفقة</string>
+    <string name="fixed">ثابتة</string>
+    <string name="winning">رابحة</string>
+    <string name="losing">خاسرة</string>
+    <string name="companies">الشركات</string>
+    <string name="volume_general">القيمة</string>
+    <string name="trades_count">عدد الصفقات</string>
+    <string name="amount_details">الحجم</string>
+    <string name="volume_details">القيمة</string>
+    <string name="dark_theme">تغيير الألوان إلى الطابع الغامق</string>
+    <string name="light_theme">تغيير الألوان إلى الطابع الفاتح</string>
+    <string name="ar_language">التغيير إلى اللغة العربية</string>
+    <string name="en_language">التغيير إلى اللغة الإنجليزية</string>
+    <string name="close_nav">إغلاق</string>
+    <string name="open">فتح</string>
+    <string name="application_settings">إعدادات التطبيق</string>
+    <string name="general_settings_label">إعدادات عامة</string>
+</resources>
