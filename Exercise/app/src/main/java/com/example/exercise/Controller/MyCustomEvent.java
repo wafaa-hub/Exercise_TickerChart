@@ -5,13 +5,15 @@ import com.example.exercise.Model.Company;
 import com.example.exercise.Model.CompanyDetails;
 import com.example.exercise.Model.GeneralIndex;
 
+import org.json.JSONObject;
+
 
 public class MyCustomEvent {
 
 
     private CompanyDetails companyDetailsData;
     private GeneralIndex generalIndexData;
-    private Company MarketWatchData;
+    private JSONObject MarketWatchData;
 
     public GeneralIndex getGeneralIndexData() {
         return generalIndexData;
@@ -21,7 +23,7 @@ public class MyCustomEvent {
         return companyDetailsData;
     }
 
-    public Company getMarketWatchData() {
+    public JSONObject getMarketWatchData() {
         return MarketWatchData;
     }
 
@@ -33,7 +35,7 @@ public class MyCustomEvent {
         this.generalIndexData = generalIndexData;
     }
 
-    public MyCustomEvent(Company MarketWatchData) {
+    public MyCustomEvent(JSONObject MarketWatchData) {
         this.MarketWatchData = MarketWatchData;
     }
 }

@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         marketWatchRecycler.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         companyDetailsAdapter = new CompanyDetailsAdapter(MainActivity.this,companies);
         marketWatchJsonParse();
+
         toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -88,18 +89,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
                     responseArray = response;
-                    Company company = null;
                     JSONObject jsonObject = null;
 
                     for(int i = 0 ; i<  response.length() ; i++)
                     {
                         try {
                             jsonObject = response.getJSONObject(i);
-                             company = new Company(jsonObject);
+                            EventBus.getDefault().post(new MyCustomEvent(jsonObject));
+
                         } catch (JSONException e) {
                             throw  new RuntimeException(e);
                         }}
-                    EventBus.getDefault().post(new MyCustomEvent(company));
                 }, error -> {
                     throw  new RuntimeException(error);
 
@@ -111,12 +111,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEventMainThread(MyCustomEvent event){
-        Company marketWatchData = event.getMarketWatchData();
+        Company marketWatchData = null;
+        JSONObject jsonObject = event.getMarketWatchData();
 
-        for(int i = 0 ; i< responseArray.length() ; i++) {
-            companies.add(marketWatchData);
-            companyDetailsAdapter.notifyDataSetChanged();
-        }
+            try {
+                marketWatchData = new Company(jsonObject);
+                companies.add(marketWatchData);
+                companyDetailsAdapter.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+             }
         marketWatchRecycler.setAdapter(companyDetailsAdapter);
         companyDetailsAdapter.notifyDataSetChanged();
 
@@ -126,8 +130,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.settings){
+            menuItem.setChecked(true);
            Intent intent = new Intent(MainActivity.this, ApplicationSettings.class);
             startActivity(intent);
+            drawerLayout.closeDrawers();
         }
         return false;
     }
