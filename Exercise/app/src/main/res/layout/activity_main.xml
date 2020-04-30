@@ -6,16 +6,19 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true"
+    >
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navigation_view"
         app:menu="@menu/drawer_menu"
+        android:fitsSystemWindows="true"
         android:layout_gravity="start"
-        android:background="#6D6C4E"
-        app:itemTextColor="#ffffff" >
+        android:background="#ffffff"
+        app:itemTextColor="?android:attr/textColorPrimary" >
 
     </com.google.android.material.navigation.NavigationView>
 
@@ -23,7 +26,7 @@
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B8B8B8"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
         <fragment
@@ -50,12 +53,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#ffffff"
-                android:gravity="center|left"
+                android:gravity="center|start"
                 android:padding="7dp"
                 android:text="@string/companyName"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:textColor="#B2B0AF" />
+                android:textColor="@color/grey" />
 
             <TextView
                 android:id="@+id/askprice"
@@ -63,10 +66,10 @@
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:layout_weight="1"
-                android:gravity="center|right"
+                android:gravity="center|start"
                 android:padding="7dp"
                 android:text="@string/ask_price"
-                android:textColor="#B2B0AF"
+                android:textColor="@color/grey"
                 android:textStyle="bold"
                 android:textSize="15sp" />
 
@@ -76,10 +79,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#ffffff"
-                android:gravity="center|right"
+                android:gravity="center|start"
                 android:padding="7dp"
                 android:text="@string/last_price"
-                android:textColor="#B2B0AF"
+                android:textColor="@color/grey"
                 android:textStyle="bold"
                 android:textSize="15sp" />
 
@@ -89,10 +92,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#ffffff"
-                android:gravity="center|right"
+                android:gravity="center|start"
                 android:padding="7dp"
                 android:text="@string/bid_price"
-                android:textColor="#B2B0AF"
+                android:textColor="@color/grey"
                 android:textStyle="bold"
                 android:textSize="15sp" />
 
@@ -102,10 +105,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#ffffff"
-                android:gravity="center|right"
+                android:gravity="center|start"
                 android:padding="7dp"
                 android:text="@string/high_price"
-                android:textColor="#B2B0AF"
+                android:textColor="@color/grey"
                 android:textStyle="bold"
                 android:textSize="15sp" />
 
@@ -115,8 +118,8 @@
             android:id="@+id/marketwatch"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_weight="1"
-            android:background="#ffffff" />
+            android:background="@color/white"
+            android:layout_weight="1" />
 
 
         <fragment
