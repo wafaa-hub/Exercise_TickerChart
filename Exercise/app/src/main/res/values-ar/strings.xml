@@ -25,4 +25,6 @@
     <string name="open">فتح</string>
     <string name="application_settings">إعدادات التطبيق</string>
     <string name="general_settings_label">إعدادات عامة</string>
+    <string name="high">أعلى</string>
+    <string name="low">أدنى</string>
 </resources>

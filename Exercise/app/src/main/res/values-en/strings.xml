@@ -17,7 +17,7 @@
     <string name="trades_count">trades count</string>
     <string name="amount_details">amount</string>
     <string name="volume_details">volume</string>
-    <string name="dark_theme">Switch to dark theme</string>
+    <string name="dark_theme">Switch to night theme</string>
     <string name="light_theme">Switch to light theme</string>
     <string name="ar_language">Switch to Arabic Language</string>
     <string name="en_language">Switch to English Language</string>
@@ -25,5 +25,7 @@
     <string name="open">Open</string>
     <string name="application_settings">Application Settings</string>
     <string name="general_settings_label">General Settings</string>
+    <string name="high">high</string>
+    <string name="low">low</string>
 
 </resources>
