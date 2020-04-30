@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Light theme. -->
-    <color name="colorPrimary">#DCD9D8</color>
-    <color name="colorPrimaryDark">#B6B4B4</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="losing_value">#ff0000</color>
-    <color name="last_value">#ff0000</color>
-    <color name="recyclerViewStyle">#ffffff</color>
-
+    <!-- Dark theme. -->
+    <color name="colorPrimary">#7C7575</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="losing_value">#EE420F</color>
+    <color name="last_value">#EE420F</color>
+    <color name="recyclerViewStyle">#000000</color>
 
     <!-- Common. -->
     <color name="winning_value">#00ff00</color>
@@ -17,8 +14,5 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="grey">#B2B0AF</color>
-
-
-
 
 </resources>
