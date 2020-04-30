@@ -10,12 +10,16 @@ import java.text.DecimalFormat;
 public class GeneralIndex {
 
     JSONObject generalIndex;
+
+    String name;
     String trades;
     String winning;
     String losing;
     String fixed;
     String volume;
     String amount;
+
+    public String getName() { return name; }
 
     public String getTrades() {
         return trades;
@@ -44,6 +48,7 @@ public class GeneralIndex {
     public GeneralIndex(JSONObject generalIndex) throws JSONException {
 
         this.generalIndex = generalIndex;
+        name = generalIndex.get("name").toString();
         trades = generalIndex.get("trades").toString();
         String companies = generalIndex.get("companies").toString();
         volume = checkNumericValue(generalIndex.get("volume").toString());

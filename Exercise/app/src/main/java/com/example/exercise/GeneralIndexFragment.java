@@ -40,6 +40,8 @@ public class GeneralIndexFragment extends Fragment {
     TextView fixCompanies;
     @BindView(R.id.numOflosing)
     TextView loseCompanies;
+    @BindView(R.id.name)
+    TextView name;
     private Unbinder unbinder;
 
     @Override
@@ -65,7 +67,7 @@ public class GeneralIndexFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void customEventReceived(MyCustomEvent event){
           GeneralIndex generalIndex = event.getGeneralIndexData();
-
+            name.setText(generalIndex.getName());
             amountGeneral.setText(generalIndex.getAmount());
             tradesGeneral.setText(generalIndex.getTrades());
             volumeGeneral.setText(generalIndex.getVolume());
