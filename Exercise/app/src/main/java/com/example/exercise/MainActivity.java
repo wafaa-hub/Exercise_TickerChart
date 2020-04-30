@@ -6,6 +6,7 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -30,7 +31,6 @@ import butterknife.ButterKnife;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @BindView(R.id.marketwatch) RecyclerView marketWatchRecycler;
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
+    @BindView(R.id.navigation_view) NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private ArrayList<Company> companies = new ArrayList<>();
     private CompanyDetailsAdapter companyDetailsAdapter;
-    private JSONArray responseArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -71,8 +79,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return  true;
         }
 
-        return super.onOptionsItemSelected(item);
-    }
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Intent intent = new Intent(MainActivity.this, ApplicationSettings.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }    }
 
     public void onStart() {
         super.onStart();
@@ -88,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String url = "http://tickerchart.com/interview/marketwatch.json";
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
-                    responseArray = response;
                     JSONObject jsonObject = null;
 
                     for(int i = 0 ; i<  response.length() ; i++)
@@ -126,16 +139,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.settings){
-            menuItem.setChecked(true);
            Intent intent = new Intent(MainActivity.this, ApplicationSettings.class);
             startActivity(intent);
             drawerLayout.closeDrawers();
         }
-        return false;
+        return true;
     }
 
 
