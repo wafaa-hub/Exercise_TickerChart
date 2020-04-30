@@ -18,11 +18,11 @@ import com.android.volley.Request;
 
 import com.android.volley.toolbox.JsonArrayRequest;
 
-import com.example.exercise.Controller.MyCustomEvent;
-import com.example.exercise.Controller.MySingletonVolley;
-import com.example.exercise.Model.ApplicationSettings;
-import com.example.exercise.Model.Company;
-import com.example.exercise.Model.CompanyDetailsAdapter;
+import com.example.exercise.controller.MyCustomEvent;
+import com.example.exercise.controller.MySingletonVolley;
+import com.example.exercise.model.ApplicationSettings;
+import com.example.exercise.model.Company;
+import com.example.exercise.model.CompanyDetailsAdapter;
 import com.google.android.material.navigation.NavigationView;
 
 import butterknife.BindView;

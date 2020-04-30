@@ -1,4 +1,4 @@
-package com.example.exercise.Model;
+package com.example.exercise.model;
 
 import android.content.SharedPreferences;
 import android.content.res.Configuration;

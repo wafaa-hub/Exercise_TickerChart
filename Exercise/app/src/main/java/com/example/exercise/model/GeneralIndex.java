@@ -1,6 +1,5 @@
-package com.example.exercise.Model;
+package com.example.exercise.model;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

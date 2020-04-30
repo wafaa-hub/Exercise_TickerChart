@@ -16,14 +16,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.exercise.Controller.MyCustomEvent;
-import com.example.exercise.Controller.MySingletonVolley;
-import com.example.exercise.Model.CompanyDetails;
+import com.example.exercise.controller.MyCustomEvent;
+import com.example.exercise.controller.MySingletonVolley;
+import com.example.exercise.model.CompanyDetails;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

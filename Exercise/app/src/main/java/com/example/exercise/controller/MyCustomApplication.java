@@ -1,4 +1,4 @@
-package com.example.exercise.Controller;
+package com.example.exercise.controller;
 
 import android.app.Application;
 import android.content.res.Configuration;

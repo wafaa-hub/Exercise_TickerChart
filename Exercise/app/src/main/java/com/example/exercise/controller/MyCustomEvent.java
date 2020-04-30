@@ -1,9 +1,8 @@
-package com.example.exercise.Controller;
+package com.example.exercise.controller;
 
 
-import com.example.exercise.Model.Company;
-import com.example.exercise.Model.CompanyDetails;
-import com.example.exercise.Model.GeneralIndex;
+import com.example.exercise.model.CompanyDetails;
+import com.example.exercise.model.GeneralIndex;
 
 import org.json.JSONObject;
 
