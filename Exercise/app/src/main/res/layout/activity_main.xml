@@ -10,18 +10,6 @@
     android:fitsSystemWindows="true"
     >
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/navigation_view"
-        app:menu="@menu/drawer_menu"
-        android:fitsSystemWindows="true"
-        android:layout_gravity="start"
-        android:background="#ffffff"
-        app:itemTextColor="?android:attr/textColorPrimary" >
-
-    </com.google.android.material.navigation.NavigationView>
-
     <LinearLayout
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
@@ -134,5 +122,17 @@
             android:layout_weight="1"></fragment>
 
     </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/navigation_view"
+        app:menu="@menu/drawer_menu"
+        android:fitsSystemWindows="true"
+        android:layout_gravity="start"
+        android:background="#ffffff"
+        app:itemTextColor="?android:attr/textColorPrimary" >
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
