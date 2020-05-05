@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -103,7 +103,6 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/losing"
             app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toEndOf="@+id/high"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
