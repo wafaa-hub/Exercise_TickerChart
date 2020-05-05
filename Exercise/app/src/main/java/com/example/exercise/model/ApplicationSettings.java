@@ -1,18 +1,14 @@
 package com.example.exercise.model;
 
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.exercise.R;
 
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,10 +37,10 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.switchLanguage:
                 if (switchLanguage.getText().equals(R.string.ar_language)) {
-                    setLocal("ar");
+                   // setLocal("ar");
                     switchLanguage.setText(R.string.en_language);
                 } else if (switchLanguage.getText().equals(R.string.en_language)) {
-                    setLocal("en");
+                  //  setLocal("en");
                     switchLanguage.setText(R.string.ar_language);
                 }
                 recreate();
@@ -52,10 +48,10 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
             case R.id.switchTheme:
 
                 if (switchTheme.getText().equals(R.string.light_theme)) {
-                    setSwitchTheme(true);
+                   // setSwitchTheme(true);
                     switchTheme.setText(R.string.dark_theme);
                 } else if (switchTheme.getText().equals(R.string.dark_theme)) {
-                    setSwitchTheme(false);
+                    //setSwitchTheme(false);
                     switchTheme.setText(R.string.light_theme);
                 }
                 recreate();
@@ -66,7 +62,7 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private  void setSwitchTheme(boolean check)
+   /* private  void setSwitchTheme(boolean check)
     {
         if(check)
         {
@@ -91,5 +87,5 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
         editor.putString("Language", language);
         editor.apply();
 
-    }
+    }*/
 }
