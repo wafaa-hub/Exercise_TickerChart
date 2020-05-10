@@ -3,7 +3,7 @@
     android:id="@+id/app_settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <FrameLayout
@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="424dp"
         android:layout_height="60dp"
-        android:background="#D3D3D3">
+        android:background="@color/white">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="@string/general_settings_label"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold">
 
@@ -32,26 +32,23 @@
             android:id="@+id/closeImage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="250dp"
-            android:layout_marginLeft="250dp"
+            android:layout_marginStart="200dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/ic_close_black">
-
+            android:src="@drawable/ic_close">
         </ImageView>
 
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#D3D3D3"></FrameLayout>
+        android:layout_height="3dp"
+        android:background="@color/white"></FrameLayout>
 
     <LinearLayout
         android:id="@+id/switchThemeLayout"
         android:layout_width="424dp"
         android:layout_height="60dp"
-        android:background="#ffffff">
+        android:background="@color/grey">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -59,7 +56,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_night_black">
+            android:src="@drawable/ic_theme">
 
         </ImageView>
 
@@ -70,7 +67,7 @@
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="@string/dark_theme"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold">
 
@@ -80,14 +77,14 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#D3D3D3"></FrameLayout>
+        android:layout_height="3dp"
+        android:background="@color/white"></FrameLayout>
 
     <LinearLayout
         android:id="@+id/switchLanguageLayout"
         android:layout_width="424dp"
         android:layout_height="60dp"
-        android:background="@color/white">
+        android:background="@color/grey">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -95,7 +92,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_language_black">
+            android:src="@drawable/ic_language">
 
         </ImageView>
 
@@ -106,7 +103,7 @@
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="@string/ar_language"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold">
 
@@ -116,7 +113,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#D3D3D3"></FrameLayout>
+        android:layout_height="3dp"
+        android:background="@color/white"></FrameLayout>
 
 </LinearLayout>

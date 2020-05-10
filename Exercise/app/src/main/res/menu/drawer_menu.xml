@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools">
 <group android:checkableBehavior="single">
         <item
             android:id="@+id/settings"
-            android:icon="@drawable/ic_settings_black"
+            android:icon="@drawable/ic_settings"
             android:title="@string/application_settings" />
 </group>
 
