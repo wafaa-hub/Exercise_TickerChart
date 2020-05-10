@@ -2,12 +2,13 @@
 <resources>
 
     <!-- Light theme. -->
-    <color name="colorPrimary">#DCD9D8</color>
+    <color name="colorPrimary">#B2B0AF</color>
     <color name="colorPrimaryDark">#B6B4B4</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="losing_value">#ff0000</color>
     <color name="last_value">#ff0000</color>
     <color name="recyclerViewStyle">#ffffff</color>
+    <color name="backgroundTextsSetting">#ffffff</color>
 
 
     <!-- Common. -->
@@ -17,8 +18,5 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="grey">#B2B0AF</color>
-
-
-
 
 </resources>
