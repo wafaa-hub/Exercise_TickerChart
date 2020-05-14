@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.example.exercise.MainActivity;
+import com.example.exercise.controller.MainActivity;
 import com.example.exercise.R;
 
 

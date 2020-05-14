@@ -6,7 +6,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".controller.MainActivity"
     android:fitsSystemWindows="true"
     >
 
@@ -19,7 +19,7 @@
 
         <fragment
             android:id="@+id/generalIndexFragement"
-            android:name="com.example.exercise.GeneralIndexFragment"
+            android:name="com.example.exercise.controller.GeneralIndexFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -111,7 +111,7 @@
 
         <fragment
             android:id="@+id/companyDetailsFragement"
-            android:name="com.example.exercise.CompanyDetailsFragment"
+            android:name="com.example.exercise.controller.CompanyDetailsFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
