@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.exercise.MainActivity;
 import com.example.exercise.R;
 
 
@@ -43,12 +44,12 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             setTheme(R.style.DarkTheme);
         } else {
             setTheme(R.style.AppTheme);
         }
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.application_settings);
         ButterKnife.bind(this);
         init();
@@ -90,10 +91,8 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
             case R.id.switchTheme:
                 if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                     theme = "night";
-                    switchTheme.setText(R.string.light_theme);
                 } else {
                     theme = "light";
-                    switchTheme.setText(R.string.dark_theme);
                 }
                setSwitchTheme(theme);
                 break;
@@ -151,8 +150,10 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            startActivity(new Intent(this,MainActivity.class));
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            startActivity(new Intent(this,MainActivity.class));
         }
         updateTextsTheme();
         saveTheme(theme);
