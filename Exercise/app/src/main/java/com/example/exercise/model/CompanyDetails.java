@@ -3,6 +3,8 @@ package com.example.exercise.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 public class CompanyDetails {
 
     JSONObject companyDetails;
@@ -48,8 +50,8 @@ public class CompanyDetails {
         trades_count = companyDetails.get("trades-count").toString();
         high = companyDetails.get("high").toString();
         low = companyDetails.get("low").toString();
-        volume = companyDetails.get("volume").toString();
-        amount = companyDetails.get("amount").toString();
+        volume = checkNumericValue(companyDetails.get("volume").toString());
+        amount = checkNumericValue(companyDetails.get("amount").toString());
     }
 
     @Override
@@ -64,5 +66,24 @@ public class CompanyDetails {
                 ", volume='" + volume + '\'' +
                 ", amount='" + amount + '\'' +
                 '}';
+    }
+
+    public String checkNumericValue(String value) {
+        String numValue;
+        if (!value.equals("#")) {
+            numValue = formatLastValue(value);
+        } else {
+            numValue = value;
+        }
+        return numValue;
+    }
+
+    public String formatLastValue(String formattedValue) {
+        String pattern = "###,###.###";
+        DecimalFormat formatter = new DecimalFormat(pattern);
+        double parseValue = Double.parseDouble(formattedValue);
+        formattedValue = formatter.format(parseValue);
+        return formattedValue;
+
     }
 }
