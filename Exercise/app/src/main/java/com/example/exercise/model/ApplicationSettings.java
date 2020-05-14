@@ -97,6 +97,7 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
                setSwitchTheme(theme);
                 break;
             case R.id.closeImage:
+                startActivity(new Intent(this,MainActivity.class));
                 finish();
                 break;
         }
@@ -150,10 +151,8 @@ public class ApplicationSettings extends AppCompatActivity implements View.OnCli
 
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            startActivity(new Intent(this,MainActivity.class));
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            startActivity(new Intent(this,MainActivity.class));
         }
         updateTextsTheme();
         saveTheme(theme);
