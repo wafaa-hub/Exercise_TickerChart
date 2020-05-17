@@ -7,34 +7,33 @@ import com.example.exercise.model.GeneralIndex;
 import org.json.JSONObject;
 
 
-public class MyCustomEvent {
-
+class MyCustomEvent {
 
     private CompanyDetails companyDetailsData;
     private GeneralIndex generalIndexData;
     private JSONObject MarketWatchData;
 
-    public GeneralIndex getGeneralIndexData() {
+    GeneralIndex getGeneralIndexData() {
         return generalIndexData;
     }
 
-    public CompanyDetails getCompanyDetailsData() {
+    CompanyDetails getCompanyDetailsData() {
         return companyDetailsData;
     }
 
-    public JSONObject getMarketWatchData() {
+    JSONObject getMarketWatchData() {
         return MarketWatchData;
     }
 
-    public MyCustomEvent(CompanyDetails companyDetailsData) {
+    MyCustomEvent(CompanyDetails companyDetailsData) {
         this.companyDetailsData = companyDetailsData;
     }
 
-    public MyCustomEvent(GeneralIndex generalIndexData) {
+    MyCustomEvent(GeneralIndex generalIndexData) {
         this.generalIndexData = generalIndexData;
     }
 
-    public MyCustomEvent(JSONObject MarketWatchData) {
+    MyCustomEvent(JSONObject MarketWatchData) {
         this.MarketWatchData = MarketWatchData;
     }
 }

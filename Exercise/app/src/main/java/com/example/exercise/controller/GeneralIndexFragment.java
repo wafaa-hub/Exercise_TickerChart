@@ -13,12 +13,10 @@ import butterknife.Unbinder;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+
 import com.android.volley.toolbox.StringRequest;
 import com.example.exercise.R;
-import com.example.exercise.controller.MyCustomEvent;
-import com.example.exercise.controller.MySingletonVolley;
+
 import com.example.exercise.model.GeneralIndex;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,12 +41,11 @@ public class GeneralIndexFragment extends Fragment {
     TextView loseCompanies;
     @BindView(R.id.name)
     TextView name;
-    private Unbinder unbinder;
 
     @Override
-    public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.general_index_fragment, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        Unbinder unbinder = ButterKnife.bind(this, view);
         generalIndexJsonParse();
         return view;
     }
@@ -66,37 +63,31 @@ public class GeneralIndexFragment extends Fragment {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void customEventReceived(MyCustomEvent event){
-          GeneralIndex generalIndex = event.getGeneralIndexData();
-            name.setText(generalIndex.getName());
-            amountGeneral.setText(generalIndex.getAmount());
-            tradesGeneral.setText(generalIndex.getTrades());
-            volumeGeneral.setText(generalIndex.getVolume());
-            winCompanies.setText(generalIndex.getWinning());
-            fixCompanies.setText(generalIndex.getFixed());
-            loseCompanies.setText(generalIndex.getLosing());
+    public void customEventReceived(MyCustomEvent event) {
+        GeneralIndex generalIndex = event.getGeneralIndexData();
+        name.setText(generalIndex.getName());
+        amountGeneral.setText(generalIndex.getAmount());
+        tradesGeneral.setText(generalIndex.getTrades());
+        volumeGeneral.setText(generalIndex.getVolume());
+        winCompanies.setText(generalIndex.getWinning());
+        fixCompanies.setText(generalIndex.getFixed());
+        loseCompanies.setText(generalIndex.getLosing());
     }
 
-    public void generalIndexJsonParse() {
+    private void generalIndexJsonParse() {
 
         String url = "http://tickerchart.com/interview/general-index.json";
         StringRequest request = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            GeneralIndex generalIndex = new GeneralIndex(jsonObject);
-                            EventBus.getDefault().post(new MyCustomEvent(generalIndex));
-                        } catch (JSONException e) {
-                            throw  new RuntimeException(e);
-                        }
+                response -> {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        GeneralIndex generalIndex = new GeneralIndex(jsonObject);
+                        EventBus.getDefault().post(new MyCustomEvent(generalIndex));
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-            }
         });
 
         MySingletonVolley.getInstance(getContext()).addToRequestQue(request);

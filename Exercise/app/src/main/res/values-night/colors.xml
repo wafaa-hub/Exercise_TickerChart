@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Dark theme. -->
     <color name="colorPrimary">#5a5a5a</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="losing_value">#EE420F</color>
-    <color name="last_value">#EE420F</color>
+    <color name="white">#000000</color>
+    <color name="black">#ffffff</color>
+    <color name="grey">#5a5a5a</color>
+    <color name="grey_Text">#D3D3D3</color>
     <color name="recyclerViewStyle">#000000</color>
     <color name="backgroundTextsSetting">#000000</color>
 
     <!-- Common. -->
+    <color name="losing_value">#EE420F</color>
+    <color name="last_value">#EE420F</color>
     <color name="winning_value">#00ff00</color>
     <color name="high_value">#00ff00</color>
     <color name="trades_count">#03DAC5</color>
-    <color name="white">#000000</color>
-    <color name="black">#ffffff</color>
-    <color name="grey">#5a5a5a</color>
+
 
 </resources>

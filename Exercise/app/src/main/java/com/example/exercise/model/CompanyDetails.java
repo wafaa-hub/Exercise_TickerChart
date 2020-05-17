@@ -1,5 +1,6 @@
 package com.example.exercise.model;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,14 +8,14 @@ import java.text.DecimalFormat;
 
 public class CompanyDetails {
 
-    JSONObject companyDetails;
-    String company_name;
-    String symbol;
-    String trades_count;
-    String high;
-    String low;
-    String volume;
-    String amount;
+    private JSONObject companyDetails;
+    private String company_name;
+    private String symbol;
+    private String trades_count;
+    private String high;
+    private String low;
+    private String volume;
+    private String amount;
 
     public String getCompany_name() {
         return company_name;
@@ -28,7 +29,9 @@ public class CompanyDetails {
         return trades_count;
     }
 
-    public String getHigh() { return high; }
+    public String getHigh() {
+        return high;
+    }
 
     public String getLow() {
         return low;
@@ -54,6 +57,7 @@ public class CompanyDetails {
         amount = checkNumericValue(companyDetails.get("amount").toString());
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "CompanyDetails{" +
@@ -68,7 +72,7 @@ public class CompanyDetails {
                 '}';
     }
 
-    public String checkNumericValue(String value) {
+    private String checkNumericValue(String value) {
         String numValue;
         if (!value.equals("#")) {
             numValue = formatLastValue(value);
@@ -78,7 +82,7 @@ public class CompanyDetails {
         return numValue;
     }
 
-    public String formatLastValue(String formattedValue) {
+    private String formatLastValue(String formattedValue) {
         String pattern = "###,###.###";
         DecimalFormat formatter = new DecimalFormat(pattern);
         double parseValue = Double.parseDouble(formattedValue);

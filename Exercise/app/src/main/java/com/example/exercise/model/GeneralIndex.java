@@ -1,5 +1,6 @@
 package com.example.exercise.model;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,17 +9,19 @@ import java.text.DecimalFormat;
 
 public class GeneralIndex {
 
-    JSONObject generalIndex;
+    private JSONObject generalIndex;
 
-    String name;
-    String trades;
-    String winning;
-    String losing;
-    String fixed;
-    String volume;
-    String amount;
+    private String name;
+    private String trades;
+    private String winning;
+    private String losing;
+    private String fixed;
+    private String volume;
+    private String amount;
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     public String getTrades() {
         return trades;
@@ -48,7 +51,7 @@ public class GeneralIndex {
 
         this.generalIndex = generalIndex;
         name = generalIndex.get("name").toString();
-        trades = generalIndex.get("trades").toString();
+        trades = checkNumericValue(generalIndex.get("trades").toString());
         String companies = generalIndex.get("companies").toString();
         volume = checkNumericValue(generalIndex.get("volume").toString());
         amount = checkNumericValue(generalIndex.get("amount").toString());
@@ -59,6 +62,7 @@ public class GeneralIndex {
 
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "GeneralIndex{" +
@@ -72,7 +76,7 @@ public class GeneralIndex {
                 '}';
     }
 
-    public String checkNumericValue(String value) {
+    private String checkNumericValue(String value) {
         String numValue;
         if (!value.equals("#")) {
             numValue = formatLastValue(value);
@@ -82,7 +86,7 @@ public class GeneralIndex {
         return numValue;
     }
 
-    public String formatLastValue(String formattedValue) {
+    private String formatLastValue(String formattedValue) {
         String pattern = "###,###.###";
         DecimalFormat formatter = new DecimalFormat(pattern);
         double parseValue = Double.parseDouble(formattedValue);

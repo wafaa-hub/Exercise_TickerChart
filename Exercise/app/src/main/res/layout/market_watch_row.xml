@@ -10,54 +10,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="18"
-        android:padding="7dp"
         android:gravity="center"
+        android:padding="7dp"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="15sp" />
+        android:textSize="@dimen/recyclerView_textSize"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/askprice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20.5"
-        android:padding="7dp"
         android:gravity="center|start"
+        android:padding="7dp"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="15sp" />
+        android:textSize="@dimen/recyclerView_textSize"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/lastprice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20.5"
-        android:padding="7dp"
         android:gravity="center|start"
+        android:padding="7dp"
         android:textColor="@color/last_value"
-        android:textStyle="bold"
-        android:textSize="15sp" />
+        android:textSize="@dimen/recyclerView_textSize"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/bidprice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20.5"
-        android:padding="7dp"
         android:gravity="center|start"
+        android:padding="7dp"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="15sp" />
+        android:textSize="@dimen/recyclerView_textSize"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/highprice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20.5"
-        android:padding="7dp"
         android:gravity="center|start"
+        android:padding="7dp"
         android:textColor="@color/high_value"
-        android:textStyle="bold"
-        android:textSize="15sp" />
+        android:textSize="@dimen/recyclerView_textSize"
+        android:textStyle="bold" />
 
 </LinearLayout>

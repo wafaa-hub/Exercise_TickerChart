@@ -13,12 +13,8 @@ import butterknife.Unbinder;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.exercise.R;
-import com.example.exercise.controller.MyCustomEvent;
-import com.example.exercise.controller.MySingletonVolley;
 import com.example.exercise.model.CompanyDetails;
 
 import org.greenrobot.eventbus.EventBus;
@@ -32,7 +28,7 @@ public class CompanyDetailsFragment extends Fragment {
     @BindView(R.id.companyName)
     TextView companyName;
     @BindView(R.id.symbol)
-    TextView sybmol;
+    TextView symbol;
     @BindView(R.id.tradesCount)
     TextView tradesDetails;
     @BindView(R.id.high)
@@ -43,13 +39,12 @@ public class CompanyDetailsFragment extends Fragment {
     TextView amountCompanyDetails;
     @BindView(R.id.volume)
     TextView volumeCompanyDetails;
-    private Unbinder unbinder;
 
     @Override
-    public View onCreateView( LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.company_details_fragment, container, false);
-         unbinder = ButterKnife.bind(this, view);
+        Unbinder unbinder = ButterKnife.bind(this, view);
         companyDetailsJsonParse();
         return view;
     }
@@ -58,45 +53,40 @@ public class CompanyDetailsFragment extends Fragment {
         super.onStart();
         EventBus.getDefault().register(this);
     }
-    public void onStop(){
+
+    public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void customEventReceived(MyCustomEvent event){
-           CompanyDetails companyDetails = event.getCompanyDetailsData();
+    public void customEventReceived(MyCustomEvent event) {
+        CompanyDetails companyDetails = event.getCompanyDetailsData();
 
-            companyName.setText(companyDetails.getCompany_name());
-            sybmol.setText(companyDetails.getSymbol());
-            amountCompanyDetails.setText(companyDetails.getAmount());
-            volumeCompanyDetails.setText(companyDetails.getVolume());
-            highPriceCompany.setText(companyDetails.getHigh());
-            lowPriceCompany.setText(companyDetails.getLow());
-            tradesDetails.setText(companyDetails.getTrades_count());
+        companyName.setText(companyDetails.getCompany_name());
+        symbol.setText(companyDetails.getSymbol());
+        amountCompanyDetails.setText(companyDetails.getAmount());
+        volumeCompanyDetails.setText(companyDetails.getVolume());
+        highPriceCompany.setText(companyDetails.getHigh());
+        lowPriceCompany.setText(companyDetails.getLow());
+        tradesDetails.setText(companyDetails.getTrades_count());
     }
 
-    public void companyDetailsJsonParse() {
+    private void companyDetailsJsonParse() {
 
         String url = "http://tickerchart.com/interview/company-details.json";
         StringRequest request = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            CompanyDetails companyDetails = new CompanyDetails(jsonObject);
-                            EventBus.getDefault().post(new MyCustomEvent(companyDetails));
+                response -> {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        CompanyDetails companyDetails = new CompanyDetails(jsonObject);
+                        EventBus.getDefault().post(new MyCustomEvent(companyDetails));
 
-                        } catch (JSONException e) {
-                            throw  new RuntimeException(e);
-                        }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }, error -> {
 
-            }
         });
 
         MySingletonVolley.getInstance(getContext()).addToRequestQue(request);

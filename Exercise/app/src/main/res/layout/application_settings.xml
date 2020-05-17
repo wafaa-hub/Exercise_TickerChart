@@ -9,7 +9,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/white"></FrameLayout>
+        android:background="@color/white" />
 
     <LinearLayout
         android:layout_width="424dp"
@@ -23,7 +23,7 @@
             android:padding="10dp"
             android:text="@string/general_settings_label"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="@dimen/general_textSize"
             android:textStyle="bold">
 
         </TextView>
@@ -34,15 +34,14 @@
             android:layout_height="match_parent"
             android:layout_marginStart="200dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_close">
-        </ImageView>
+            android:src="@drawable/ic_close" />
 
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/white"></FrameLayout>
+        android:background="@color/white" />
 
     <LinearLayout
         android:id="@+id/switchThemeLayout"
@@ -68,7 +67,7 @@
             android:padding="10dp"
             android:text="@string/dark_theme"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="@dimen/general_textSize"
             android:textStyle="bold">
 
         </TextView>
@@ -78,7 +77,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/white"></FrameLayout>
+        android:background="@color/white" />
 
     <LinearLayout
         android:id="@+id/switchLanguageLayout"
@@ -104,7 +103,7 @@
             android:padding="10dp"
             android:text="@string/ar_language"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="@dimen/general_textSize"
             android:textStyle="bold">
 
         </TextView>
@@ -114,6 +113,6 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/white"></FrameLayout>
+        android:background="@color/white" />
 
 </LinearLayout>
